@@ -1,83 +1,56 @@
 import java.util.Scanner;
 
 public class Soal02 {
-	public static Boolean PerlombaanInternasional(String Perlombaan) {
-		String perlombaan = Perlombaan.toLowerCase();
-
-		switch (perlombaan) {
-			case "ada":
-				return true;
-			default:
-				return false;
-		}
+	public static boolean isPerlombaanInternasional(String perlombaan) {
+		return perlombaan.trim().toLowerCase().equals("ada");
 	}
 
-	public static Boolean HKIan(String Haki) {
-		String haki = Haki.toLowerCase();
-
-		switch (haki) {
-			case "ada":
-				return true;
-			default:
-				return true;
-		}
+	public static boolean isHKIExist(String haki) {
+		return haki.trim().toLowerCase().equals("ada");
 	}
 
-	public static Boolean EPRT(int totalNilaiEprt) {
-		double totalnilaieprt = totalNilaiEprt;
-
-		if (totalnilaieprt >= 450) {
-			return true;
-		} else {
-			return false;
-		}
+	public static boolean isEPRTValid(int totalNilaiEprt) {
+		return totalNilaiEprt >= 450;
 	}
 
-	public static Boolean MasaStudi(double totalMasaStudi) {
-		double masastudi = totalMasaStudi;
-
-		if (masastudi > 3.0) {
-			return true;
-		} else {
-			return false;
-		}
+	public static boolean isMasaStudiValid(double totalMasaStudi) {
+		return totalMasaStudi <= 3.0;
 	}
 
-	public static Boolean IPK35(double totalIPKdanStudi) {
-		double nilaiIPK = totalIPKdanStudi;
-
-		if (nilaiIPK > 3.5) {
-			return true;
-		} else {
-			return false;
-		}
+	public static boolean isIPKValid(double ipk) {
+		return ipk >= 3.5;
 	}
 
-	public static void main(final String[] args) {
-		// Kerjakan soalnya di sini
+	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 
-		// masa studi dan jumlah IPK
+		// Read masa studi and IPK
 		double masaStudi = input.nextDouble();
 		double nilaiIPK = input.nextDouble();
-		int EPRT = input.nextInt();
-		String HKI = input.nextLine();
-		String PNI = input.nextLine();
+		int eprtScore = input.nextInt();
 
-		//print EPRT dan PNI
-		Boolean masaStudi1 = MasaStudi(masaStudi);
-		Boolean nilaiipk = IPK35(nilaiIPK);
-		Boolean nilaieprt = EPRT(EPRT);
-		Boolean HKInya = HKIan(HKI);
-		Boolean perlombaan  = PerlombaanInternasional(PNI);
+		input.nextLine();  // Consume the leftover newline
 
-		//bandingkan dengan operasi logika
-		Boolean nilaisemua = masaStudi1 && nilaiipk && nilaieprt && HKInya && perlombaan;
+		String hki = input.nextLine();
+		String pni = input.nextLine();
 
-		if (nilaisemua == true) {
-			System.out.println("Cumlaude");
-		} else {
-			System.out.println("Tidak cumlaude");
-		}
+		// Check all conditions
+		boolean isValidMasaStudi = isMasaStudiValid(masaStudi);
+		boolean isValidIPK = isIPKValid(nilaiIPK);
+		boolean isValidEPRT = isEPRTValid(eprtScore);
+		boolean hasHKI = isHKIExist(hki);
+		boolean hasPerlombaan = isPerlombaanInternasional(pni);
+
+		// Combine all conditions
+		boolean isCumlaude = isValidMasaStudi &&
+				isValidIPK &&
+				isValidEPRT &&
+				hasHKI &&
+				hasPerlombaan;
+
+		// Print result
+		System.out.println(isCumlaude ? "Cumlaude" : "Tidak cumlaude");
+
+		input.close();
 	}
 }
