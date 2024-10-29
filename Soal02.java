@@ -24,15 +24,13 @@ public class Soal02 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 
-		// Read masa studi and IPK
+		// Read all inputs without prompts
 		double masaStudi = input.nextDouble();
 		double nilaiIPK = input.nextDouble();
 		int eprtScore = input.nextInt();
-
-		input.nextLine();  // Consume the leftover newline
-
-		String hki = input.nextLine();
-		String pni = input.nextLine();
+		input.nextLine();  // Consume the newline after nextInt()
+		String hki = input.nextLine().trim();
+		String pni = input.nextLine().trim();
 
 		// Check all conditions
 		boolean isValidMasaStudi = isMasaStudiValid(masaStudi);
@@ -48,9 +46,7 @@ public class Soal02 {
 				hasHKI &&
 				hasPerlombaan;
 
-		// Print result
+		// Print result without extra text
 		System.out.println(isCumlaude ? "Cumlaude" : "Tidak cumlaude");
-
-		input.close();
 	}
 }
