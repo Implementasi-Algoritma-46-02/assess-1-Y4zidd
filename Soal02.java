@@ -24,29 +24,25 @@ public class Soal02 {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 
-		// Read all inputs without prompts
 		double masaStudi = input.nextDouble();
 		double nilaiIPK = input.nextDouble();
 		int eprtScore = input.nextInt();
-		input.nextLine();  // Consume the newline after nextInt()
+		input.nextLine();
 		String hki = input.nextLine().trim();
 		String pni = input.nextLine().trim();
 
-		// Check all conditions
 		boolean isValidMasaStudi = isMasaStudiValid(masaStudi);
 		boolean isValidIPK = isIPKValid(nilaiIPK);
 		boolean isValidEPRT = isEPRTValid(eprtScore);
 		boolean hasHKI = isHKIExist(hki);
 		boolean hasPerlombaan = isPerlombaanInternasional(pni);
 
-		// Combine all conditions
 		boolean isCumlaude = isValidMasaStudi &&
 				isValidIPK &&
 				isValidEPRT &&
 				hasHKI &&
 				hasPerlombaan;
 
-		// Print result without extra text
 		System.out.println(isCumlaude ? "Cumlaude" : "Tidak cumlaude");
 	}
 }
